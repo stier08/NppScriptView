@@ -1,0 +1,2 @@
+# NppScriptView
+NppScriptView
