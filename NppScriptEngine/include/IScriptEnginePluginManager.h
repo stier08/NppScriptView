@@ -18,7 +18,6 @@ namespace PYTHON_PLUGIN_MANAGER
 		virtual void finalize() = 0;
 		virtual void reloadScripts() = 0;
 		
-		virtual void preinitCppPythonModules() = 0;
 
 		virtual SCRIPT_MANAGER::IScriptRegistry& getScriptRegistry() = 0;
 

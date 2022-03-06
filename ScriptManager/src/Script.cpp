@@ -3,7 +3,7 @@
 #include "ScriptManager/include/Script.h"
 #include "ScriptManager/include/ScriptRegistry.h"
 #include "ScriptManager/include/IScriptRegistry.h"
-#include "NppPython/include/IPythonPluginManager.h"
+#include "NppScriptEngine/include/IScriptEnginePluginManager.h"
 
 #include <exception>
 namespace SCRIPT_MANAGER

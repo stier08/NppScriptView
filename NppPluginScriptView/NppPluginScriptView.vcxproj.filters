@@ -52,6 +52,15 @@
     <Filter Include="NppScriptEngine\include">
       <UniqueIdentifier>{08c6408c-fae7-4fe4-b660-89390e48395d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NppWrapper">
+      <UniqueIdentifier>{ffc6486e-2ada-4f1a-8593-1c2412411999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppWrapper\src">
+      <UniqueIdentifier>{661a8577-ed6c-430a-8bea-179afaf6b47a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppWrapper\include">
+      <UniqueIdentifier>{c598c885-f0ee-4c9d-a764-a726cc91b4b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\PluginDefinition.h">
@@ -166,6 +175,15 @@
     <ClInclude Include="..\NppScriptEngine\include\ScriptEnginePluginManager.h">
       <Filter>NppScriptEngine\include</Filter>
     </ClInclude>
+    <ClInclude Include="..\NppWrapper\include\ImportExport.h">
+      <Filter>NppWrapper\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppWrapper\include\INppWrapper.h">
+      <Filter>NppWrapper\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppWrapper\include\NppWrapper.h">
+      <Filter>NppWrapper\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\PluginDefinition.cpp">
@@ -213,6 +231,9 @@
     </ClCompile>
     <ClCompile Include="..\NppScriptEngine\src\ScriptEnginePluginManager.cpp">
       <Filter>NppScriptEngine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppWrapper\src\NppWrapper.cpp">
+      <Filter>NppWrapper\src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -10,9 +10,6 @@ namespace PYTHON_PLUGIN_MANAGER
 	class  PythonPluginManager : public IPythonPluginManager
 	{
 	private:
-		boost::python::object pyMainModule_;
-		boost::python::object pyMainNamespace_;
-		//m_glue = main_module.attr("glue");
 
 		bool pythonInitialized_;
 
@@ -29,7 +26,6 @@ namespace PYTHON_PLUGIN_MANAGER
 		virtual void finalize();
 		virtual void reloadScripts();
 
-		virtual void preinitCppPythonModules();
 
 		virtual SCRIPT_MANAGER::IScriptRegistry& getScriptRegistry() ;
 		virtual void set_event_sink(SCRIPT_MANAGER::IScriptRegistryEventSink* sink);

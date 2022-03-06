@@ -3,10 +3,6 @@
 
 #include "NppScriptEngine/include/ImportExport.h"
 
-#pragma warning( push )
-#pragma warning( disable : 4244 4005)
-#include <boost/python.hpp>
-#pragma warning( pop )
 
 
 namespace NppScriptEngineNamespace

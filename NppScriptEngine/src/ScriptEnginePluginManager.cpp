@@ -30,15 +30,7 @@ namespace PYTHON_PLUGIN_MANAGER
 	}
 
 
-	void PythonPluginManager::preinitCppPythonModules()
-	{
-		OutputDebugString(L"[NppPyStandalonePlugin] [BEGIN] PythonPluginManager::preinitCppPythonModules");
-		NppPythonScript::preinitScintillaModule();
-		NPP_PYTHON::preinitpynpp();
-		OutputDebugString(L"[NppPyStandalonePlugin] [END] PythonPluginManager::preinitCppPythonModules");
-	}
-
-	void PythonPluginManager::loadScriptsImpl()
+   void PythonPluginManager::loadScriptsImpl()
 	{
 		try
 		{
@@ -61,29 +53,14 @@ namespace PYTHON_PLUGIN_MANAGER
 			else
 			{
 				std::string filepath(env);
-				BoostPythonNamespace::IBoostPython& boostpython = BoostPythonNamespace::getBoostPython();
-				OutputDebugString(L"PythonPluginManager::loadScriptsImpl executing init script");
-				OutputDebugStringA(filepath.c_str());
-				OutputDebugString(L"PythonPluginManager::loadScriptsImpl done with init script");
-				boost::python::object obj = boostpython.run_python_file(filepath);
-				{
-					NppPythonScript::GILLock  lock;
-					OutputDebugString(L"PythonPluginManager::loadScriptsImpl calling __main__.SetInitScript");
-					boost::python::object setInitScript = pyMainModule_.attr("SetInitScript");
-					setInitScript(filepath);
-					OutputDebugString(L"PythonPluginManager::loadScriptsImpl calling __main__.ReloadScripts");
-					boost::python::object reloadScripts = pyMainModule_.attr("ReloadScripts");
-					reloadScripts();
-					OutputDebugString(L"PythonPluginManager::loadScriptsImpl done");
-				}
+
 			}
 
 		}
-		catch (boost::python::error_already_set&)
+		catch (...)
 		{
 			OutputDebugString(L"Exception PythonPluginManager::loadScriptsImpl");
-			std::string what = BoostPythonNamespace::parse_python_exception();
-			OutputDebugStringA(what.c_str());
+
 		}
 	}
 	void PythonPluginManager::loadScripts()
@@ -103,25 +80,12 @@ namespace PYTHON_PLUGIN_MANAGER
 	{
 		try
 		{
-			if (Py_IsInitialized() != 0)
-			{
-
-				// Can't call finalize with boost::python.
-				// Py_Finalize();
-
-				//OutputDebugString(L"Calling Py_FinalizeEx...");
-				//Py_FinalizeEx();
-				// note that at this time you must not call Py_Finalize() to stop the interpreter. This may be fixed in a future version of boost.python.
-				// https://www.boost.org/doc/libs/1_62_0/libs/python/doc/html/tutorial/tutorial/embedding.html
-				//OutputDebugString(L"Done Py_FinalizeEx");
-			}
+			
 			pythonInitialized_ = false;
 		}
-		catch (boost::python::error_already_set& )
+		catch (...)
 		{
 			OutputDebugString(L"Exception. PythonPluginManager::finalizePythonImpll");
-			std::string what = BoostPythonNamespace::parse_python_exception();
-			OutputDebugStringA(what.c_str());
 		}
 	}
 	void PythonPluginManager::finalizePython()
@@ -145,17 +109,11 @@ namespace PYTHON_PLUGIN_MANAGER
 		}
 		try
 		{
-			Py_Initialize();
-			NppPythonScript::GILLock  lock;
-			pyMainModule_ = boost::python::import("__main__");
-			pyMainNamespace_ = pyMainModule_.attr("__dict__");
 			pythonInitialized_ = true;
 		}
-		catch (boost::python::error_already_set& )
+		catch (... )
 		{
 			OutputDebugString(L"Exception. PythonPluginManager::initializePythonImpl");
-			std::string what = BoostPythonNamespace::parse_python_exception();
-			OutputDebugStringA(what.c_str());
 
 			// do something about
 #pragma warning( push )
@@ -198,10 +156,7 @@ namespace PYTHON_PLUGIN_MANAGER
 	void PythonPluginManager::finalize()
 	{
 		OutputDebugString(L"PythonPluginManager::finalize Begin");
-		NppPythonScript::GILLock  lock;
 
-		pyMainModule_= boost::python::object();
-		pyMainNamespace_ = boost::python::object();
 
 		finalizePython();
 		OutputDebugString(L"PythonPluginManager::finalize End");
@@ -238,59 +193,42 @@ namespace PYTHON_PLUGIN_MANAGER
 
 	void PythonPluginManager::python_exec(const std::string& cmd)
 	{
-		BoostPythonNamespace::IBoostPython& boostpython = BoostPythonNamespace::getBoostPython();
+		NppScriptEngineNamespace::INppScriptEngine& boostpython = NppScriptEngineNamespace::getNppScriptEngine();
 		boostpython.exec_python(cmd);
 	}
 	void PythonPluginManager::python_exec(const std::wstring& cmd)
 	{
-		BoostPythonNamespace::IBoostPython& boostpython = BoostPythonNamespace::getBoostPython();
+		NppScriptEngineNamespace::INppScriptEngine& boostpython = NppScriptEngineNamespace::getNppScriptEngine();
 		boostpython.exec_python(cmd);
 	}
 
 	void PythonPluginManager::run_python_file(const std::string& filepath)
 	{
-		BoostPythonNamespace::IBoostPython& boostpython = BoostPythonNamespace::getBoostPython();
+		NppScriptEngineNamespace::INppScriptEngine& boostpython = NppScriptEngineNamespace::getNppScriptEngine();
 		boostpython.run_python_file(filepath);
 
 	}
 	void PythonPluginManager::run_python_file(const std::wstring& filepath)
 	{
-		BoostPythonNamespace::IBoostPython& boostpython = BoostPythonNamespace::getBoostPython();
+		NppScriptEngineNamespace::INppScriptEngine& boostpython = NppScriptEngineNamespace::getNppScriptEngine();
 		boostpython.run_python_file(filepath);
-	}
-
-	std::string extractStringFromPyStr(PyObject* strObj)
-	{
-		boost::python::handle<> h(strObj);
-		boost::python::object o(h);
-		std::string  str = boost::python::extract<std::string>(boost::python::str(o));
-		return str;
 	}
 
 	// SCRIPT_MANAGER::IScriptRunner
 
-	void PythonPluginManager::RunScript(const STRING_SUPPORT::script_reference_type& name)
+	void PythonPluginManager::RunScript(const STRING_SUPPORT::script_reference_type& /*name*/)
 	{
-		NppPythonScript::GILLock  lock;
 		try
 		{
-			boost::python::object  pyRunScriptFunction  = pyMainModule_.attr("RunScript");
-			OutputDebugString(L"RunScript Started");
-			OutputDebugStringA(name.c_str());
 
-			boost::python::object ret = pyRunScriptFunction(name);
-			std::string retstr = boost::python::extract<std::string>(boost::python::str(ret));
-			OutputDebugString(L"RunScript return value");
-			OutputDebugStringA(retstr.c_str());
+			OutputDebugString(L"RunScript Started");
+
 			OutputDebugString(L"RunScript done");
 
 		}
-		catch (boost::python::error_already_set&)
+		catch (...)
 		{
-			//std::string s = getPythonErrorString();
-			std::string s = BoostPythonNamespace::parse_python_exception();
-			OutputDebugString(L"Exception. RunScript");
-			OutputDebugStringA(s.c_str());
+			OutputDebugString(L"Exception RunScript");
 		}
 	}
 

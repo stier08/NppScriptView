@@ -19,8 +19,7 @@
 #include "NppPluginAPI/include/menuCmdID.h"
 #include "NppDockingTemplate/include/ScriptsViewDlg.h"
 #include "NppScriptWinSupport/include/SampleDialogBox.h"
-#include "NppPython/include/IPythonPluginManager.h"
-#include "NppScintillaPython/include/PythonHandler.h"
+#include "NppScriptEngine/include/IScriptEnginePluginManager.h"
 #include "NppWrapper/include/INppWrapper.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/lambda/bind.hpp>
@@ -46,15 +45,6 @@ ScriptsViewDlg _scriptsViewDlg;
 HINSTANCE g_hInstance;
 
 void treeViewDlgEnsureCreated();
-#pragma warning( push )
-
-/*   Warnings disabled 
-*   4592: 'g_pythonHandler': symbol will be dynamically initialized (implementation limitation)
-
-*/
-#pragma warning( disable : 4592)
-boost::shared_ptr<NppPythonScript::PythonHandler> g_pythonHandler;
-#pragma warning( pop )
 
 /*   Warnings disabled
 * 4702: unreachable code
@@ -114,9 +104,7 @@ void dllCleanUpImpl()
 	try
 
 	{
-		PYTHON_PLUGIN_MANAGER::IPythonPluginManager& manager = PYTHON_PLUGIN_MANAGER::getPythonPluginManager();
-		manager.finalize();
-		g_pythonHandler.reset();
+		//
 	}
 	catch (std::exception& ex)
 	{
@@ -160,27 +148,8 @@ void initPythonPluginsImpl()
 {
 	try
 	{
-		g_pythonHandler = boost::shared_ptr<NppPythonScript::PythonHandler>(new NppPythonScript::PythonHandler((HINSTANCE)getHInstance(), nppData._nppHandle, nppData._scintillaMainHandle, nppData._scintillaSecondHandle));
-
-		NPP_WRAPPER::INppWrapper& nppwrapper = NPP_WRAPPER::getNppWrapper();
-		nppwrapper.initialize((HINSTANCE)getHInstance(), 
-			nppData._nppHandle,
-			nppData._scintillaMainHandle,
-			nppData._scintillaSecondHandle
-			);
-
 		PYTHON_PLUGIN_MANAGER::IPythonPluginManager& manager = PYTHON_PLUGIN_MANAGER::getPythonPluginManager();
-
-		manager.preinitCppPythonModules();
-
-		if (g_pythonHandler)
-		{
-			g_pythonHandler->initPython();
-		}
 		manager.initialize();
-		treeViewDlgEnsureCreated();
-		manager.set_event_sink(&_scriptsViewDlg);
-
 	}
 	catch (std::exception& ex)
 	{
@@ -252,8 +221,8 @@ void commandMenuInit()
     //            ShortcutKey *shortcut,          // optional. Define a shortcut to trigger this command
     //            bool check0nInit                // optional. Make this menu item be checked visually
     //            );
-    setCommand(0, TEXT("NppPyStandalonePlugin About"), createAboutDoc, NULL, false);
-    setCommand(1, TEXT("NppPyStandalonePlugin About Dlg"), showAboutDlg, NULL, false);
+    setCommand(0, TEXT("NppScriptView About"), createAboutDoc, NULL, false);
+    setCommand(1, TEXT("NppScriptView About Dlg"), showAboutDlg, NULL, false);
 	setCommand(2, TEXT("Reload Scripts"), reloadScripts, NULL, false);
 	setCommand(3, TEXT("Run Current File"), pythonRuntCurrentFile, NULL, false);
 	setCommand(4, TEXT("Py Executre Selection"), pythonRuntSelection, NULL, false);
@@ -302,7 +271,7 @@ std::string getBuildEnv()
 	
 
 	std::stringstream ss;
-	ss << "NppPyStandalonePlugin" << std::endl
+	ss << "NppScriptView" << std::endl
 		<< "Build environment setup" << std::endl
 #ifdef _DEBUG
 		<< "DEBUG BUILD" << std::endl
@@ -315,10 +284,7 @@ std::string getBuildEnv()
 		<< "VSVer : " << _MY_STRINGIZE(PROP_VSVer) << std::endl
 		<< "VSNum : " << _MY_STRINGIZE(PROP_VSNum) << std::endl
 		<< "BoostVer : " << _MY_STRINGIZE(PROP_BoostVer) << std::endl
-		<< "PythonMagorVer : " << _MY_STRINGIZE(PROP_PythonMagorVer) << std::endl
-		<< "PythonMinorVer : " << _MY_STRINGIZE(PROP_PythonMinorVer) << std::endl
-		<< "PythonVer : " << _MY_STRINGIZE(PROP_PythonVer) << std::endl
-		<< "BoostPythonTag : " << _MY_STRINGIZE(PROP_BoostPythonTag) << std::endl;
+		;
 		
 /*		
 		<< "PythonFolder : " << _MY_STRINGIZE(PROP_PythonFolder) << std::endl
