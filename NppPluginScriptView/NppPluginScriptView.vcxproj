@@ -19,10 +19,49 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\NppDockingTemplate\include\Docking.h" />
+    <ClInclude Include="..\NppDockingTemplate\include\DockingDlgInterface.h" />
+    <ClInclude Include="..\NppDockingTemplate\include\dockingResource.h" />
+    <ClInclude Include="..\NppDockingTemplate\include\ImportExport.h" />
+    <ClInclude Include="..\NppDockingTemplate\include\resource.h" />
+    <ClInclude Include="..\NppDockingTemplate\include\ScriptsViewDlg.h" />
+    <ClInclude Include="..\NppDockingTemplate\include\StaticDialog.h" />
+    <ClInclude Include="..\NppDockingTemplate\include\Window.h" />
+    <ClInclude Include="..\NppPluginAPI\include\ExceptionSupport.h" />
+    <ClInclude Include="..\NppPluginAPI\include\menuCmdID.h" />
+    <ClInclude Include="..\NppPluginAPI\include\Notepad_plus_msgs.h" />
+    <ClInclude Include="..\NppPluginAPI\include\PluginInterface.h" />
+    <ClInclude Include="..\NppPluginAPI\include\SciLexer.h" />
+    <ClInclude Include="..\NppPluginAPI\include\Scintilla.h" />
+    <ClInclude Include="..\NppPluginAPI\include\Sci_Position.h" />
+    <ClInclude Include="..\NppScriptWinSupport\include\ImportExport.h" />
+    <ClInclude Include="..\NppScriptWinSupport\include\SampleDialogBox.h" />
+    <ClInclude Include="..\NppScriptWinSupport\include\StackDump.h" />
+    <ClInclude Include="..\NppScriptWinSupport\include\TreeView.h" />
+    <ClInclude Include="..\ScriptManager\include\ImportExport.h" />
+    <ClInclude Include="..\ScriptManager\include\IScript.h" />
+    <ClInclude Include="..\ScriptManager\include\IScriptGroup.h" />
+    <ClInclude Include="..\ScriptManager\include\IScriptRegistry.h" />
+    <ClInclude Include="..\ScriptManager\include\IScriptRegistryEventSink.h" />
+    <ClInclude Include="..\ScriptManager\include\IScriptRunner.h" />
+    <ClInclude Include="..\ScriptManager\include\Script.h" />
+    <ClInclude Include="..\ScriptManager\include\ScriptGroup.h" />
+    <ClInclude Include="..\ScriptManager\include\ScriptRegistry.h" />
+    <ClInclude Include="..\ScriptManager\include\ScriptRunner.h" />
+    <ClInclude Include="..\ScriptManager\include\StringSupport.h" />
     <ClInclude Include="include\PluginDefinition.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\NppDockingTemplate\src\ScriptsViewDlg.cpp" />
+    <ClCompile Include="..\NppDockingTemplate\src\StaticDialog.cpp" />
+    <ClCompile Include="..\NppScriptWinSupport\src\SampleDialogBox.cpp" />
+    <ClCompile Include="..\NppScriptWinSupport\src\StackDump.cpp" />
+    <ClCompile Include="..\NppScriptWinSupport\src\TreeView.cpp" />
+    <ClCompile Include="..\ScriptManager\src\Script.cpp" />
+    <ClCompile Include="..\ScriptManager\src\ScriptGroup.cpp" />
+    <ClCompile Include="..\ScriptManager\src\ScriptRegistry.cpp" />
+    <ClCompile Include="..\ScriptManager\src\StringSupport.cpp" />
     <ClCompile Include="src\NppPluginScriptView.cpp" />
     <ClCompile Include="src\PluginDefinition.cpp" />
     <ClCompile Include="src\PluginInterface.cpp" />

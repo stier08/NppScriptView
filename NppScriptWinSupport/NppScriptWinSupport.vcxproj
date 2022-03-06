@@ -40,7 +40,7 @@
     <ProjectGuid>{C19CCBC6-4A0C-4BF0-AC4D-EEB5789DAE13}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>NppPyScriptWinSupport</RootNamespace>
-    <ProjectName>NppPyScriptWinSupport</ProjectName>
+    <ProjectName>NppScriptWinSupport</ProjectName>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\properties\solution.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
