@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CommCtrl.h"
 #include "windowsx.h"
-#include <NppPyScriptWinSupport/include/TreeView.h>
+#include <NppScriptWinSupport/include/TreeView.h>
 #include "ScriptManager/include/IScript.h"
 #include "ScriptManager/include/IScriptGroup.h"
 

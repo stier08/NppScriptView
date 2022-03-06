@@ -1,7 +1,7 @@
 #ifndef _SAMPLE_DIALOG_BOX_H__INCLUDED
 #define _SAMPLE_DIALOG_BOX_H__INCLUDED
 
-#include "NppPyScriptWinSupport/include/ImportExport.h"
+#include "NppScriptWinSupport/include/ImportExport.h"
 
 namespace WindowSupport
 { 

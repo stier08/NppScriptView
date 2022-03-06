@@ -18,14 +18,14 @@
 #include "NppPluginScriptView/include/PluginDefinition.h"
 #include "NppPluginAPI/include/menuCmdID.h"
 #include "NppDockingTemplate/include/ScriptsViewDlg.h"
-#include "NppPyScriptWinSupport/include/SampleDialogBox.h"
+#include "NppScriptWinSupport/include/SampleDialogBox.h"
 #include "NppPython/include/IPythonPluginManager.h"
 #include "NppScintillaPython/include/PythonHandler.h"
 #include "NppWrapper/include/INppWrapper.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/lambda/bind.hpp>
 #include <boost/lambda/lambda.hpp>
-#include "NppPyScriptWinSupport/include/StackDump.h"
+#include "NppScriptWinSupport/include/StackDump.h"
 //
 // The plugin data that Notepad++ needs
 //

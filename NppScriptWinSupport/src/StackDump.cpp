@@ -46,7 +46,7 @@ source https://github.com/Croteam-official/Serious-Engine/blob/master/Sources/En
 #include <boost/filesystem/operations.hpp>
 #include <filesystem>
 
-#include "NppPyScriptWinSupport/include/StackDump.h"
+#include "NppScriptWinSupport/include/StackDump.h"
 
 //==========================================
 // Matt Pietrek

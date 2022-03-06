@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include <NppPyScriptWinSupport/include/SampleDialogBox.h>
-#include <NppPyScriptWinSupport/include/TreeView.h>
+#include <NppScriptWinSupport/include/SampleDialogBox.h>
+#include <NppScriptWinSupport/include/TreeView.h>
 #include <cstdint>
 #include <cassert>
 

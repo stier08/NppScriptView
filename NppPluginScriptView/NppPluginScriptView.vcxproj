@@ -34,6 +34,12 @@
     <ClInclude Include="..\NppPluginAPI\include\SciLexer.h" />
     <ClInclude Include="..\NppPluginAPI\include\Scintilla.h" />
     <ClInclude Include="..\NppPluginAPI\include\Sci_Position.h" />
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEngine.h" />
+    <ClInclude Include="..\NppScriptEngine\include\ImportExport.h" />
+    <ClInclude Include="..\NppScriptEngine\include\IScriptEnginePluginManager.h" />
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEngineMacros.h" />
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEngineNPP.h" />
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEnginePluginManager.h" />
     <ClInclude Include="..\NppScriptWinSupport\include\ImportExport.h" />
     <ClInclude Include="..\NppScriptWinSupport\include\SampleDialogBox.h" />
     <ClInclude Include="..\NppScriptWinSupport\include\StackDump.h" />
@@ -55,6 +61,9 @@
   <ItemGroup>
     <ClCompile Include="..\NppDockingTemplate\src\ScriptsViewDlg.cpp" />
     <ClCompile Include="..\NppDockingTemplate\src\StaticDialog.cpp" />
+    <ClCompile Include="..\NppScriptEngine\src\ScriptEngine.cpp" />
+    <ClCompile Include="..\NppScriptEngine\src\ScriptEngineNpp.cpp" />
+    <ClCompile Include="..\NppScriptEngine\src\ScriptEnginePluginManager.cpp" />
     <ClCompile Include="..\NppScriptWinSupport\src\SampleDialogBox.cpp" />
     <ClCompile Include="..\NppScriptWinSupport\src\StackDump.cpp" />
     <ClCompile Include="..\NppScriptWinSupport\src\TreeView.cpp" />
@@ -161,7 +170,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>NppDockingTemplate.lib;NppPyScriptWinSupport.lib;NppPyScriptCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>NppDockingTemplate.lib;NppScriptWinSupport.lib;NppPyScriptCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -180,7 +189,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>NppDockingTemplate.lib;NppPyScriptWinSupport.lib;NppPyScriptCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>NppDockingTemplate.lib;NppScriptWinSupport.lib;NppPyScriptCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -202,7 +211,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>NppDockingTemplate.lib;NppPyScriptWinSupport.lib;NppPyScriptCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>NppDockingTemplate.lib;NppScriptWinSupport.lib;NppPyScriptCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -229,7 +238,7 @@ copy ..\readme.FIRST ..\bin\readme.FIRST</Command>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>NppDockingTemplate.lib;NppPyScriptWinSupport.lib;NppPyScriptCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>NppDockingTemplate.lib;NppScriptWinSupport.lib;NppPyScriptCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>

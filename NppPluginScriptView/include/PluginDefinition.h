@@ -29,7 +29,7 @@ HINSTANCE getHInstance();
 //-------------------------------------//
 // Here define your plugin name
 //
-const TCHAR NPP_PLUGIN_NAME[] = TEXT("NppPyStandalonePlugin");
+const TCHAR NPP_PLUGIN_NAME[] = TEXT("NppScriptView");
 
 //-----------------------------------------------//
 //-- STEP 2. DEFINE YOUR PLUGIN COMMAND NUMBER --//

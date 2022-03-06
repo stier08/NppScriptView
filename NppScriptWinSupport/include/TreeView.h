@@ -1,7 +1,7 @@
 #ifndef _TREE_VIEW_H__INCLUDED
 #define _TREE_VIEW_H__INCLUDED
 
-#include "NppPyScriptWinSupport/include/ImportExport.h"
+#include "NppScriptWinSupport/include/ImportExport.h"
 #include "ScriptManager/include/IScript.h"
 #include "ScriptManager/include/IScriptGroup.h"
 namespace WindowSupport

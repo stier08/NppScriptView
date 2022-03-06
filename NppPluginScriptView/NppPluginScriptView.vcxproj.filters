@@ -43,6 +43,15 @@
     <Filter Include="ScriptManager\src">
       <UniqueIdentifier>{26697488-1f45-4e5c-a2d8-19e4e52350c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NppScriptEngine">
+      <UniqueIdentifier>{fc4c7df7-1483-4000-9781-1b8e2bfb40df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppScriptEngine\src">
+      <UniqueIdentifier>{84e970ab-a137-4960-815e-6ceb5a747d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppScriptEngine\include">
+      <UniqueIdentifier>{08c6408c-fae7-4fe4-b660-89390e48395d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\PluginDefinition.h">
@@ -139,6 +148,24 @@
     <ClInclude Include="..\ScriptManager\include\StringSupport.h">
       <Filter>ScriptManager\include</Filter>
     </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEngine.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\ImportExport.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\IScriptEnginePluginManager.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEngineMacros.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEngineNPP.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEnginePluginManager.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\PluginDefinition.cpp">
@@ -177,6 +204,15 @@
     </ClCompile>
     <ClCompile Include="..\ScriptManager\src\StringSupport.cpp">
       <Filter>ScriptManager\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppScriptEngine\src\ScriptEngine.cpp">
+      <Filter>NppScriptEngine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppScriptEngine\src\ScriptEngineNpp.cpp">
+      <Filter>NppScriptEngine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppScriptEngine\src\ScriptEnginePluginManager.cpp">
+      <Filter>NppScriptEngine\src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
