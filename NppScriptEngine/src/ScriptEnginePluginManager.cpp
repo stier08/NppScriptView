@@ -10,23 +10,36 @@
 
 #include "NppScriptWinSupport/include/StackDump.h"
 
+#include "PythonScript/include/NppPythonScript.h"
+
 #include  <fstream>
 #include  <sstream>
 #include  <boost/shared_ptr.hpp>
-
+#include <codecvt>
 #pragma warning( push )
 
 /*   Warnings disabled
 *   4702: unreachable code
 */
 #pragma warning( disable : 4702)
-
+#pragma warning( disable : 4244)
+extern NppData nppData;
 
 namespace PYTHON_PLUGIN_MANAGER
 {
 
-	PythonPluginManager::PythonPluginManager(): pythonInitialized_(false)
+	PythonPluginManager::PythonPluginManager(): pythonInitialized_(true)
 	{
+	}
+
+	std::wstring stringToWstring(const char* utf8Bytes)
+	{
+		//setup converter
+		using convert_type = std::codecvt_utf8<typename std::wstring::value_type>;
+		std::wstring_convert<convert_type, typename std::wstring::value_type> converter;
+
+		//use converter (.to_bytes: wstr->str, .from_bytes: str->wstr)
+		return converter.from_bytes(utf8Bytes);
 	}
 
 
@@ -34,27 +47,42 @@ namespace PYTHON_PLUGIN_MANAGER
 	{
 		try
 		{
-			//std::string str(std::getenv("PYPN_INIT_PY_PATH"));
+	
+			PythonScript_Exec pse;
+			pse.structVersion = 1;
 
-#pragma warning( push )
+			HANDLE completeEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 
-			/*   Warnings disabled
-			*   4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-			*/
-#pragma warning( disable : 4996)
-			const char* env = std::getenv("NPP_INIT_PY_PATH");
-#pragma warning( pop )
+			pse.completedEvent = completeEvent;
+			pse.deliverySuccess = FALSE;
+			std::wstring  script_path=  std::wstring(stringToWstring ( getenv("PORTABLE_WS_CORE_HOME") )) + std::wstring(stringToWstring ( "\\plugin\\pynpp\\pythonscript\\cmdview.py" ));
+			pse.script = script_path.c_str();
+			pse.flags = PYSCRF_SYNC;
 
 
-			if (0 == env)
+			TCHAR pluginName[] = _T("PythonScript.dll");
+			CommunicationInfo commInfo;
+			commInfo.internalMsg = PYSCR_EXECSCRIPT;
+			commInfo.srcModuleName = _T("NppPluginScriptView.dll");
+
+			commInfo.info = reinterpret_cast<void*>(&pse);
+
+			BOOL delivery = SendMessage(nppData._nppHandle, NPPM_MSGTOPLUGIN, reinterpret_cast<WPARAM>(pluginName), reinterpret_cast<LPARAM>(&commInfo));
+			if (!delivery)
 			{
-				throw std::runtime_error("NPP_INIT_PY_PATH not defiend");
+				MessageBox(NULL, _T("Python Script not found"), _T("Msg2PluginTester"), 0);
+			}
+
+
+			if (pse.deliverySuccess)
+			{
+				MessageBox(NULL, _T("Delivery Success"), _T("Msg2PluginTester"), 0);
 			}
 			else
 			{
-				std::string filepath(env);
-
+				MessageBox(NULL, _T("Delivery FAILED!"), _T("Msg2PluginTester"), 0);
 			}
+
 
 		}
 		catch (...)
