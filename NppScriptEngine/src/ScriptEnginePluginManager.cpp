@@ -28,7 +28,7 @@ extern NppData nppData;
 namespace PYTHON_PLUGIN_MANAGER
 {
 
-	PythonPluginManager::PythonPluginManager(): pythonInitialized_(true)
+	PythonPluginManager::PythonPluginManager(): pythonInitialized_(false)
 	{
 	}
 
@@ -43,6 +43,22 @@ namespace PYTHON_PLUGIN_MANAGER
 	}
 
 
+	void threadRun(HANDLE waitEvent)
+	{
+		WaitForSingleObject(waitEvent, INFINITE);
+		MessageBox(NULL, _T("Finished!"), _T("I waited..."), 0);
+		std::wstring  callback_path = std::wstring(stringToWstring(getenv("PORTABLE_WS_TMP_HOME"))) + std::wstring(stringToWstring("\\npp_py_scripts"));
+
+		std::wifstream ifs(callback_path);
+		std::wstring k;
+		std::wstring v;
+		int index;
+		while (ifs >> index) {
+			ifs >> k;
+			ifs >> v;
+		}
+	}
+
    void PythonPluginManager::loadScriptsImpl()
 	{
 		try
@@ -55,7 +71,7 @@ namespace PYTHON_PLUGIN_MANAGER
 
 			pse.completedEvent = completeEvent;
 			pse.deliverySuccess = FALSE;
-			std::wstring  script_path=  std::wstring(stringToWstring ( getenv("PORTABLE_WS_CORE_HOME") )) + std::wstring(stringToWstring ( "\\plugin\\pynpp\\pythonscript\\cmdview.py" ));
+			std::wstring  script_path=  std::wstring(stringToWstring ( getenv("PORTABLE_WS_CORE_HOME") )) + std::wstring(stringToWstring ( "\\plugin\\pynpp\\pythonscript\\pyscripts.py" ));
 			pse.script = script_path.c_str();
 			pse.flags = PYSCRF_SYNC;
 
@@ -83,6 +99,7 @@ namespace PYTHON_PLUGIN_MANAGER
 				MessageBox(NULL, _T("Delivery FAILED!"), _T("Msg2PluginTester"), 0);
 			}
 
+			CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)threadRun, (LPVOID)completeEvent, 0, NULL);
 
 		}
 		catch (...)
@@ -91,6 +108,7 @@ namespace PYTHON_PLUGIN_MANAGER
 
 		}
 	}
+   
 	void PythonPluginManager::loadScripts()
 	{
 		__try
