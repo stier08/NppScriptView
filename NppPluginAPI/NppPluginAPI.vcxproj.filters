@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{876287a1-a6ff-480b-a5f8-3be660f5142a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Notepad_plus_msgs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PluginInterface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Scintilla.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ExceptionSupport.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SciLexer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\menuCmdID.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

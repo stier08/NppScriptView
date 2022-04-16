@@ -31,7 +31,8 @@
 *.out
 *.app
 
-*.user
-
-bin/**
+# Visual studio
+*.vcxproj.user
 .vs/**
+bin/**
+

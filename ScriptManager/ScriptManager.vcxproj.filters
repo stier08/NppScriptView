@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{4486b617-e35c-4e8a-9059-b281ec1d9f37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{17d6c5e8-c96e-4885-92ee-2aa4a5642600}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ScriptRegistry.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IScriptRegistry.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IScriptRunner.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Script.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScriptGroup.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StringSupport.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IScriptRegistryEventSink.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="include\ImportExport.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IScript.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IScriptGroup.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScriptRunner.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ScriptRegistry.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Script.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScriptGroup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="src\StringSupport.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScriptRunner.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

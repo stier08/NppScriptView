@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{4486b617-e35c-4e8a-9059-b281ec1d9f37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{17d6c5e8-c96e-4885-92ee-2aa4a5642600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppDockingTemplate">
+      <UniqueIdentifier>{ab69d074-bb5c-4dd8-b584-5dc6ec2faebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppDockingTemplate\src">
+      <UniqueIdentifier>{3e8c0bd7-0197-4dcb-a6d3-271400415cda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppDockingTemplate\include">
+      <UniqueIdentifier>{aba42b85-58eb-4bb9-9467-7de01ac905b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppPluginAPI">
+      <UniqueIdentifier>{e5391f03-b6cd-46ed-b3c1-faed85536c5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppPluginAPI\include">
+      <UniqueIdentifier>{f0412c87-a31d-407c-93e8-c144c5cfda5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppPluginAPI\src">
+      <UniqueIdentifier>{b8cd5b67-7495-4ada-87ee-c50777a26950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppScriptWinSupport">
+      <UniqueIdentifier>{ff9e2ec0-a4cd-4d82-b83d-cf6c28062bed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppScriptWinSupport\src">
+      <UniqueIdentifier>{dd1250cb-09fb-488e-a60b-b05df597bf7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppScriptWinSupport\include">
+      <UniqueIdentifier>{63030321-4121-4ef5-b450-4ef219dfede0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptManager">
+      <UniqueIdentifier>{ed7d31f2-9f2e-4dc1-9106-8ca459b51350}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptManager\include">
+      <UniqueIdentifier>{95ceb569-5f1d-4e25-bf11-f5bb28ce2d8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptManager\src">
+      <UniqueIdentifier>{26697488-1f45-4e5c-a2d8-19e4e52350c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppScriptEngine">
+      <UniqueIdentifier>{fc4c7df7-1483-4000-9781-1b8e2bfb40df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppScriptEngine\src">
+      <UniqueIdentifier>{84e970ab-a137-4960-815e-6ceb5a747d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppScriptEngine\include">
+      <UniqueIdentifier>{08c6408c-fae7-4fe4-b660-89390e48395d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppWrapper">
+      <UniqueIdentifier>{ffc6486e-2ada-4f1a-8593-1c2412411999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppWrapper\src">
+      <UniqueIdentifier>{661a8577-ed6c-430a-8bea-179afaf6b47a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NppWrapper\include">
+      <UniqueIdentifier>{c598c885-f0ee-4c9d-a764-a726cc91b4b4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\PluginDefinition.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="..\NppDockingTemplate\include\Docking.h">
+      <Filter>NppDockingTemplate\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppDockingTemplate\include\DockingDlgInterface.h">
+      <Filter>NppDockingTemplate\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppDockingTemplate\include\dockingResource.h">
+      <Filter>NppDockingTemplate\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppDockingTemplate\include\ImportExport.h">
+      <Filter>NppDockingTemplate\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppDockingTemplate\include\resource.h">
+      <Filter>NppDockingTemplate\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppDockingTemplate\include\ScriptsViewDlg.h">
+      <Filter>NppDockingTemplate\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppDockingTemplate\include\StaticDialog.h">
+      <Filter>NppDockingTemplate\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppDockingTemplate\include\Window.h">
+      <Filter>NppDockingTemplate\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppPluginAPI\include\ExceptionSupport.h">
+      <Filter>NppPluginAPI\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppPluginAPI\include\menuCmdID.h">
+      <Filter>NppPluginAPI\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppPluginAPI\include\Notepad_plus_msgs.h">
+      <Filter>NppPluginAPI\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppPluginAPI\include\PluginInterface.h">
+      <Filter>NppPluginAPI\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppPluginAPI\include\Sci_Position.h">
+      <Filter>NppPluginAPI\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppPluginAPI\include\SciLexer.h">
+      <Filter>NppPluginAPI\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppPluginAPI\include\Scintilla.h">
+      <Filter>NppPluginAPI\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptWinSupport\include\ImportExport.h">
+      <Filter>NppScriptWinSupport\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptWinSupport\include\SampleDialogBox.h">
+      <Filter>NppScriptWinSupport\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptWinSupport\include\StackDump.h">
+      <Filter>NppScriptWinSupport\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptWinSupport\include\TreeView.h">
+      <Filter>NppScriptWinSupport\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\ImportExport.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\IScript.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\IScriptGroup.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\IScriptRegistry.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\IScriptRegistryEventSink.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\IScriptRunner.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\Script.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\ScriptGroup.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\ScriptRegistry.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\ScriptRunner.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ScriptManager\include\StringSupport.h">
+      <Filter>ScriptManager\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEngine.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\ImportExport.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\IScriptEnginePluginManager.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEngineMacros.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEngineNPP.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppScriptEngine\include\ScriptEnginePluginManager.h">
+      <Filter>NppScriptEngine\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppWrapper\include\ImportExport.h">
+      <Filter>NppWrapper\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppWrapper\include\INppWrapper.h">
+      <Filter>NppWrapper\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NppWrapper\include\NppWrapper.h">
+      <Filter>NppWrapper\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\PluginDefinition.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PluginInterface.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="src\NppPluginScriptView.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppDockingTemplate\src\ScriptsViewDlg.cpp">
+      <Filter>NppDockingTemplate\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppDockingTemplate\src\StaticDialog.cpp">
+      <Filter>NppDockingTemplate\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppScriptWinSupport\src\SampleDialogBox.cpp">
+      <Filter>NppScriptWinSupport\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppScriptWinSupport\src\StackDump.cpp">
+      <Filter>NppScriptWinSupport\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppScriptWinSupport\src\TreeView.cpp">
+      <Filter>NppScriptWinSupport\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ScriptManager\src\Script.cpp">
+      <Filter>ScriptManager\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ScriptManager\src\ScriptGroup.cpp">
+      <Filter>ScriptManager\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ScriptManager\src\ScriptRegistry.cpp">
+      <Filter>ScriptManager\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ScriptManager\src\StringSupport.cpp">
+      <Filter>ScriptManager\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppScriptEngine\src\ScriptEngine.cpp">
+      <Filter>NppScriptEngine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppScriptEngine\src\ScriptEngineNpp.cpp">
+      <Filter>NppScriptEngine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppScriptEngine\src\ScriptEnginePluginManager.cpp">
+      <Filter>NppScriptEngine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NppWrapper\src\NppWrapper.cpp">
+      <Filter>NppWrapper\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
