@@ -276,13 +276,60 @@ namespace PYTHON_PLUGIN_MANAGER
 
 	// SCRIPT_MANAGER::IScriptRunner
 
-	void PythonPluginManager::RunScript(const STRING_SUPPORT::script_reference_type& /*name*/)
+	void PythonPluginManager::RunScriptImpl(const STRING_SUPPORT::script_reference_type& name)
+	{
+		try
+		{
+
+			PythonScript_Exec pse;
+			pse.structVersion = 1;
+
+			pse.deliverySuccess = FALSE;
+			std::string script_char = std::string("import pysergplugin.core; pysergplugin.core.RunScript('") + name + std::string("')");
+			std::wstring script = stringToWstring(script_char.c_str());
+			pse.script = script.c_str();
+			pse.flags = 0;
+
+
+			TCHAR pluginName[] = _T("PythonScript.dll");
+			CommunicationInfo commInfo;
+			commInfo.internalMsg = PYSCR_EXECSTATEMENT;
+			commInfo.srcModuleName = _T("NppPluginScriptView.dll");
+
+			commInfo.info = reinterpret_cast<void*>(&pse);
+
+			BOOL delivery = SendMessage(nppData._nppHandle, NPPM_MSGTOPLUGIN, reinterpret_cast<WPARAM>(pluginName), reinterpret_cast<LPARAM>(&commInfo));
+			if (!delivery)
+			{
+				MessageBox(NULL, _T("Python Script not found"), _T("Msg2PluginTester"), 0);
+				return;
+			}
+
+
+			if (pse.deliverySuccess)
+			{
+				// MessageBox(NULL, _T("Delivery Success"), _T("Msg2PluginTester"), 0);
+			}
+			else
+			{
+				MessageBox(NULL, _T("Delivery FAILED!"), _T("Msg2PluginTester"), 0);
+				return;
+			}
+
+		}
+		catch (...)
+		{
+			OutputDebugString(L"Exception PythonPluginManager::RunScriptImpl");
+		}
+	}
+
+	void PythonPluginManager::RunScript(const STRING_SUPPORT::script_reference_type& name)
 	{
 		try
 		{
 
 			OutputDebugString(L"RunScript Started");
-
+			RunScriptImpl(name);
 			OutputDebugString(L"RunScript done");
 
 		}

@@ -20,6 +20,7 @@ namespace PYTHON_PLUGIN_MANAGER
 		bool initializePython();
 		void loadScriptsImpl();
 		void loadScripts();
+		void RunScriptImpl(const STRING_SUPPORT::script_reference_type& name);
 	public:
 		PythonPluginManager();
 		virtual void initialize();
@@ -42,7 +43,6 @@ namespace PYTHON_PLUGIN_MANAGER
 
 		// SCRIPT_MANAGER::IScriptRunner
 		virtual void RunScript(const STRING_SUPPORT::script_reference_type& name);
-
 
 	};
 
