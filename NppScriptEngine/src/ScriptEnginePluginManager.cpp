@@ -16,6 +16,7 @@
 #include  <sstream>
 #include  <boost/shared_ptr.hpp>
 #include <codecvt>
+
 #pragma warning( push )
 
 /*   Warnings disabled
@@ -42,20 +43,31 @@ namespace PYTHON_PLUGIN_MANAGER
 		return converter.from_bytes(utf8Bytes);
 	}
 
-
 	void threadRun(HANDLE waitEvent)
 	{
 		WaitForSingleObject(waitEvent, INFINITE);
-		MessageBox(NULL, _T("Finished!"), _T("I waited..."), 0);
+		//MessageBox(NULL, _T("Finished!"), _T("I waited..."), 0);
 		std::wstring  callback_path = std::wstring(stringToWstring(getenv("PORTABLE_WS_TMP_HOME"))) + std::wstring(stringToWstring("\\npp_py_scripts"));
 
+		IPythonPluginManager& manager = getPythonPluginManager();
+
 		std::wifstream ifs(callback_path);
-		std::wstring k;
-		std::wstring v;
+		ifs.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+		std::wstring dummy;
+		std::wstring name;
+		std::wstring group;
 		int index;
-		while (ifs >> index) {
-			ifs >> k;
-			ifs >> v;
+		while (ifs  >> index) {
+			std::getline(ifs, dummy);
+			std::getline(ifs, name);
+			std::getline(ifs, group);
+			
+
+			manager.register_script(
+				STRING_SUPPORT::std_wstring_utf_to_utf_std_string(name),
+				STRING_SUPPORT::std_wstring_utf_to_utf_std_string(group),
+				STRING_SUPPORT::std_wstring_utf_to_utf_std_string(name)
+			);
 		}
 	}
 
@@ -72,6 +84,7 @@ namespace PYTHON_PLUGIN_MANAGER
 			pse.completedEvent = completeEvent;
 			pse.deliverySuccess = FALSE;
 			std::wstring  script_path=  std::wstring(stringToWstring ( getenv("PORTABLE_WS_CORE_HOME") )) + std::wstring(stringToWstring ( "\\plugin\\pynpp\\pythonscript\\pyscripts.py" ));
+
 			pse.script = script_path.c_str();
 			pse.flags = PYSCRF_SYNC;
 
@@ -87,16 +100,18 @@ namespace PYTHON_PLUGIN_MANAGER
 			if (!delivery)
 			{
 				MessageBox(NULL, _T("Python Script not found"), _T("Msg2PluginTester"), 0);
+				return;
 			}
 
 
 			if (pse.deliverySuccess)
 			{
-				MessageBox(NULL, _T("Delivery Success"), _T("Msg2PluginTester"), 0);
+				// MessageBox(NULL, _T("Delivery Success"), _T("Msg2PluginTester"), 0);
 			}
 			else
 			{
 				MessageBox(NULL, _T("Delivery FAILED!"), _T("Msg2PluginTester"), 0);
+				return;
 			}
 
 			CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)threadRun, (LPVOID)completeEvent, 0, NULL);
@@ -105,7 +120,6 @@ namespace PYTHON_PLUGIN_MANAGER
 		catch (...)
 		{
 			OutputDebugString(L"Exception PythonPluginManager::loadScriptsImpl");
-
 		}
 	}
    

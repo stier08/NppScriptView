@@ -144,61 +144,35 @@ void dllCleanUp()
 }
 
 
-void initPythonPluginsImpl()
+void initScriptsManagerImpl()
 {
 	try
 	{
 		PYTHON_PLUGIN_MANAGER::IPythonPluginManager& manager = PYTHON_PLUGIN_MANAGER::getPythonPluginManager();
 		manager.initialize();
+		treeViewDlgEnsureCreated();
+		manager.set_event_sink(&_scriptsViewDlg);
 	}
 	catch (std::exception& ex)
 	{
 		//do somethimng
-		OutputDebugString(L"Exception. initPythonPluginsImpl");
+		OutputDebugString(L"Exception. initScriptsManagerImpl");
 		OutputDebugStringA(ex.what());
 	}
 
 }
 
-void reloadPythonScriptsImpl()
-{
-	try
-	{
-		PYTHON_PLUGIN_MANAGER::IPythonPluginManager& manager = PYTHON_PLUGIN_MANAGER::getPythonPluginManager();
-		manager.reloadScripts();
-	}
-	catch (std::exception& ex)
-	{
-		//do somethimng
-		OutputDebugString(L"Exception. reloadPythonScriptsImpl");
-		OutputDebugStringA(ex.what());
-	}
-}
 
-void reloadPythonScripts()
+bool initScriptsManager()
 {
 	__try
 	{
-		reloadPythonScriptsImpl();
-	}
-	__except (MSJUnhandledExceptionFilter(GetExceptionInformation()))
-	{
-		OutputDebugString(L"Structured Exception. reloadPythonScripts");
-		OutputDebugStringA(getSHExceptionStringStrA());
-	}
-
-}
-
-bool initPythonPlugins()
-{
-	__try
-	{
-		initPythonPluginsImpl();
+		initScriptsManagerImpl();
 		return true;
 	}
 	__except (MSJUnhandledExceptionFilter(GetExceptionInformation()))
 	{
-		OutputDebugString(L"Structured Exception. initPythonPlugins");
+		OutputDebugString(L"Structured Exception. initScriptsManager");
 		OutputDebugStringA(getSHExceptionStringStrA());
 
 		return false;
@@ -228,10 +202,7 @@ void commandMenuInit()
 	setCommand(4, TEXT("Py Executre Selection"), pythonRuntSelection, NULL, false);
 	setCommand(5, TEXT("Tree View Dialog"), treeViewDlg, NULL, false);
 
-	if (initPythonPlugins())
-	{
-		reloadPythonScripts();
-	}
+
 }
 
 //
@@ -419,6 +390,8 @@ void reloadScripts()
 {
 	__try
 	{
+		initScriptsManager();
+
 		reloadScriptsImpl();
 	}
 	__except (MSJUnhandledExceptionFilter(GetExceptionInformation()))
