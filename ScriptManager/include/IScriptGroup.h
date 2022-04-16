@@ -2,7 +2,7 @@
 #define iscriptgroup_h__included
 
 #include "ScriptManager/include/Script.h"
-#include "ScriptManager/include/StringSupport.h"
+#include "Common/include/StringSupport.h"
 
 #include <list>
 

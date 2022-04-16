@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "ScriptManager/include/StringSupport.h"
+#include "Common/include/StringSupport.h"
 
 namespace STRING_SUPPORT
 { 

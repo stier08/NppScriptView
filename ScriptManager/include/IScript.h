@@ -2,7 +2,7 @@
 #define iscript_h__included
 
 #include <string>
-#include "ScriptManager/include/StringSupport.h"
+#include "Common/include/StringSupport.h"
 
 namespace SCRIPT_MANAGER
 {

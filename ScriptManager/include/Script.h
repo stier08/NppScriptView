@@ -2,7 +2,7 @@
 #define script_h__included
 
 #include <string>
-#include "ScriptManager/include/StringSupport.h"
+#include "Common/include/StringSupport.h"
 #include "ScriptManager/include/IScript.h"
 
 namespace SCRIPT_MANAGER

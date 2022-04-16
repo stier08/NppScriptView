@@ -3,7 +3,7 @@
 
 #include "ScriptManager/include/IScript.h"
 #include "ScriptManager/include/IScriptGroup.h"
-#include "ScriptManager/include/StringSupport.h"
+#include "Common/include/StringSupport.h"
 
 #include <list>
 

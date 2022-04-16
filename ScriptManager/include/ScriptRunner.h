@@ -1,7 +1,7 @@
 #ifndef _scriptrunner_h__included
 #define _scriptrunner_h__included
 
-#include "ScriptManager/include/StringSupport.h"
+#include "Common/include/StringSupport.h"
 #include "ScriptManager/include/IScriptRunner.h"
 
 namespace SCRIPT_MANAGER

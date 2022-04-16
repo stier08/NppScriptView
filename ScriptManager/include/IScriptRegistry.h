@@ -2,7 +2,7 @@
 #define _iscriptregistry_h__included
 
 #include "ScriptManager/include/IScriptRunner.h"
-#include "ScriptManager/include/StringSupport.h"
+#include "Common/include/StringSupport.h"
 #include "ScriptManager/include/ScriptGroup.h"
 #include "ScriptManager/include/IScriptRegistryEventSink.h"
 

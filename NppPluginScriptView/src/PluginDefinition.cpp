@@ -19,6 +19,7 @@
 #include "NppPluginAPI/include/menuCmdID.h"
 #include "NppDockingTemplate/include/ScriptsViewDlg.h"
 #include "NppScriptWinSupport/include/SampleDialogBox.h"
+#include "ScriptManager/include/IScriptRegistry.h"
 #include "NppScriptEngine/include/IScriptEnginePluginManager.h"
 #include "NppWrapper/include/INppWrapper.h"
 #include <boost/shared_ptr.hpp>
@@ -151,7 +152,8 @@ void initScriptsManagerImpl()
 		PYTHON_PLUGIN_MANAGER::IPythonPluginManager& manager = PYTHON_PLUGIN_MANAGER::getPythonPluginManager();
 		manager.initialize();
 		treeViewDlgEnsureCreated();
-		manager.set_event_sink(&_scriptsViewDlg);
+		SCRIPT_MANAGER::IScriptRegistry& registry = SCRIPT_MANAGER::getScriptRegistry();
+		registry.SetEventSink(&_scriptsViewDlg);
 	}
 	catch (std::exception& ex)
 	{

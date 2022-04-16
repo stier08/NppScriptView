@@ -19,14 +19,9 @@ namespace PYTHON_PLUGIN_MANAGER
 		virtual void reloadScripts() = 0;
 		
 
-		virtual SCRIPT_MANAGER::IScriptRegistry& getScriptRegistry() = 0;
-
 		virtual void register_script(const std::string& reference, 
 			const std::string& groupname,
 			const std::string& scriptname) = 0;
-
-		virtual void set_event_sink(SCRIPT_MANAGER::IScriptRegistryEventSink* sink) = 0;
-
 
 		virtual void python_exec(const std::string& cmd) = 0;
 		virtual void python_exec(const std::wstring& cmd) = 0;

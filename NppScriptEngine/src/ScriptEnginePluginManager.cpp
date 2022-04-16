@@ -3,18 +3,18 @@
 #include "NppScriptEngine/include/ScriptEngine.h"
 #include "NppScriptEngine/include/ScriptEnginePluginManager.h"
 #include "ScriptManager/include/IScriptRegistry.h"
-#include "ScriptManager/include/StringSupport.h"
+#include "Common/include/StringSupport.h"
 
-
-#include "NppScriptEngine/include/ScriptEnginenpp.h"
 
 #include "NppScriptWinSupport/include/StackDump.h"
 
 #include "PythonScript/include/NppPythonScript.h"
 
-#include  <fstream>
-#include  <sstream>
-#include  <boost/shared_ptr.hpp>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
+#include <boost/bind/bind.hpp>
+#include <boost/algorithm/string/replace.hpp>
 #include <codecvt>
 
 #pragma warning( push )
@@ -43,32 +43,38 @@ namespace PYTHON_PLUGIN_MANAGER
 		return converter.from_bytes(utf8Bytes);
 	}
 
-	void threadRun(HANDLE waitEvent)
+	void PythonPluginManager::threadRunner()
 	{
-		WaitForSingleObject(waitEvent, INFINITE);
+		WaitForSingleObject(waitEvent_, INFINITE);
 		//MessageBox(NULL, _T("Finished!"), _T("I waited..."), 0);
 		std::wstring  callback_path = std::wstring(stringToWstring(getenv("PORTABLE_WS_TMP_HOME"))) + std::wstring(stringToWstring("\\npp_py_scripts"));
-
-		IPythonPluginManager& manager = getPythonPluginManager();
 
 		std::wifstream ifs(callback_path);
 		ifs.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
 		std::wstring dummy;
 		std::wstring name;
 		std::wstring group;
+		std::wstring exec_cmd;
 		int index;
+		std::getline(ifs, exec_cmd);
+		srcipt_exec_cmd_ =  STRING_SUPPORT::std_wstring_utf_to_utf_std_string( exec_cmd );
 		while (ifs  >> index) {
 			std::getline(ifs, dummy);
 			std::getline(ifs, name);
 			std::getline(ifs, group);
 			
 
-			manager.register_script(
+			register_script(
 				STRING_SUPPORT::std_wstring_utf_to_utf_std_string(name),
 				STRING_SUPPORT::std_wstring_utf_to_utf_std_string(group),
 				STRING_SUPPORT::std_wstring_utf_to_utf_std_string(name)
 			);
 		}
+	}
+
+	void PythonPluginManager::set_srcipt_exec_cmd(const std::string& cmd)
+	{
+		srcipt_exec_cmd_ = cmd;
 	}
 
    void PythonPluginManager::loadScriptsImpl()
@@ -79,11 +85,11 @@ namespace PYTHON_PLUGIN_MANAGER
 			PythonScript_Exec pse;
 			pse.structVersion = 1;
 
-			HANDLE completeEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+			waitEvent_ = CreateEvent(NULL, TRUE, FALSE, NULL);
 
-			pse.completedEvent = completeEvent;
+			pse.completedEvent = waitEvent_;
 			pse.deliverySuccess = FALSE;
-			std::wstring  script_path=  std::wstring(stringToWstring ( getenv("PORTABLE_WS_CORE_HOME") )) + std::wstring(stringToWstring ( "\\plugin\\pynpp\\pythonscript\\pyscripts.py" ));
+			std::wstring  script_path=  std::wstring(stringToWstring ( getenv("PORTABLE_WS_CORE_HOME") )) + std::wstring(stringToWstring ( "\\plugin\\pynpp\\pyscripts.py" ));
 
 			pse.script = script_path.c_str();
 			pse.flags = PYSCRF_SYNC;
@@ -113,8 +119,10 @@ namespace PYTHON_PLUGIN_MANAGER
 				MessageBox(NULL, _T("Delivery FAILED!"), _T("Msg2PluginTester"), 0);
 				return;
 			}
+			
 
-			CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)threadRun, (LPVOID)completeEvent, 0, NULL);
+			thread_ = boost::shared_ptr<boost::thread>( new boost::thread(boost::bind(&PythonPluginManager::threadRunner, this)) );
+
 
 		}
 		catch (...)
@@ -229,22 +237,11 @@ namespace PYTHON_PLUGIN_MANAGER
 		}
 	}
 
-	SCRIPT_MANAGER::IScriptRegistry& PythonPluginManager::getScriptRegistry()
-	{
-		return SCRIPT_MANAGER::getScriptRegistry();
-	}
-
-	void PythonPluginManager::set_event_sink(SCRIPT_MANAGER::IScriptRegistryEventSink* sink)
-	{
-		SCRIPT_MANAGER::IScriptRegistry& registry = getScriptRegistry();
-		registry.SetEventSink(sink);
-	}
-
 	void PythonPluginManager::register_script(const std::string& reference,
 		const std::string& groupname,
 		const std::string& scriptname)
 	{
-		SCRIPT_MANAGER::IScriptRegistry& registry = getScriptRegistry();
+		SCRIPT_MANAGER::IScriptRegistry& registry = SCRIPT_MANAGER::getScriptRegistry();
 		registry.Add(
 			STRING_SUPPORT::std_string_utf_to_utf_std_wstring(groupname),
 			STRING_SUPPORT::std_string_utf_to_utf_std_wstring(scriptname),
@@ -285,7 +282,8 @@ namespace PYTHON_PLUGIN_MANAGER
 			pse.structVersion = 1;
 
 			pse.deliverySuccess = FALSE;
-			std::string script_char = std::string("import pysergplugin.core; pysergplugin.core.RunScript('") + name + std::string("')");
+			
+			std::string script_char = boost::replace_all_copy(srcipt_exec_cmd_, std::string("%s"), name);
 			std::wstring script = stringToWstring(script_char.c_str());
 			pse.script = script.c_str();
 			pse.flags = 0;

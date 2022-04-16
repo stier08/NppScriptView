@@ -3,15 +3,19 @@
 
 #include "NppScriptEngine/include/ImportExport.h"
 #include "NppScriptEngine/include/IScriptEnginePluginManager.h"
-
+#include  <boost/thread.hpp>
+#include  <boost/shared_ptr.hpp>
 
 namespace PYTHON_PLUGIN_MANAGER
 {
-	class  PythonPluginManager : public IPythonPluginManager
+	class  PythonPluginManager :public boost::noncopyable, public IPythonPluginManager
 	{
 	private:
 
 		bool pythonInitialized_;
+		std::string srcipt_exec_cmd_;
+		boost::shared_ptr<boost::thread> thread_;
+		HANDLE waitEvent_;
 
 		void finalizePythonImpl();
 		void finalizePython();
@@ -21,15 +25,12 @@ namespace PYTHON_PLUGIN_MANAGER
 		void loadScriptsImpl();
 		void loadScripts();
 		void RunScriptImpl(const STRING_SUPPORT::script_reference_type& name);
+		void threadRunner();
 	public:
 		PythonPluginManager();
 		virtual void initialize();
 		virtual void finalize();
 		virtual void reloadScripts();
-
-
-		virtual SCRIPT_MANAGER::IScriptRegistry& getScriptRegistry() ;
-		virtual void set_event_sink(SCRIPT_MANAGER::IScriptRegistryEventSink* sink);
 
 		virtual void register_script(const std::string& reference,
 			const std::string& groupname,
@@ -43,7 +44,8 @@ namespace PYTHON_PLUGIN_MANAGER
 
 		// SCRIPT_MANAGER::IScriptRunner
 		virtual void RunScript(const STRING_SUPPORT::script_reference_type& name);
-
+		// 
+		void set_srcipt_exec_cmd(const std::string& srcipt_exec_cmd);
 	};
 
 }

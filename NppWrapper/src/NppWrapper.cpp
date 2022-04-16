@@ -4,7 +4,7 @@
 #include "NppWrapper/include/NppWrapper.h"
 //#include "NppScintillaPython/include/NotepadPlusWrapper.h"
 //#include "NppScintillaPython/include/GILManager.h"
-#include "ScriptManager/include/StringSupport.h"
+#include "Common/include/StringSupport.h"
 
 namespace NPP_WRAPPER
 {

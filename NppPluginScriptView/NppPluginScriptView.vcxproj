@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Common\include\StringSupport.h" />
     <ClInclude Include="..\NppDockingTemplate\include\Docking.h" />
     <ClInclude Include="..\NppDockingTemplate\include\DockingDlgInterface.h" />
     <ClInclude Include="..\NppDockingTemplate\include\dockingResource.h" />
@@ -38,7 +39,6 @@
     <ClInclude Include="..\NppScriptEngine\include\ImportExport.h" />
     <ClInclude Include="..\NppScriptEngine\include\IScriptEnginePluginManager.h" />
     <ClInclude Include="..\NppScriptEngine\include\ScriptEngineMacros.h" />
-    <ClInclude Include="..\NppScriptEngine\include\ScriptEngineNPP.h" />
     <ClInclude Include="..\NppScriptEngine\include\ScriptEnginePluginManager.h" />
     <ClInclude Include="..\NppScriptWinSupport\include\ImportExport.h" />
     <ClInclude Include="..\NppScriptWinSupport\include\SampleDialogBox.h" />
@@ -57,15 +57,14 @@
     <ClInclude Include="..\ScriptManager\include\ScriptGroup.h" />
     <ClInclude Include="..\ScriptManager\include\ScriptRegistry.h" />
     <ClInclude Include="..\ScriptManager\include\ScriptRunner.h" />
-    <ClInclude Include="..\ScriptManager\include\StringSupport.h" />
     <ClInclude Include="include\PluginDefinition.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Common\src\StringSupport.cpp" />
     <ClCompile Include="..\NppDockingTemplate\src\ScriptsViewDlg.cpp" />
     <ClCompile Include="..\NppDockingTemplate\src\StaticDialog.cpp" />
     <ClCompile Include="..\NppScriptEngine\src\ScriptEngine.cpp" />
-    <ClCompile Include="..\NppScriptEngine\src\ScriptEngineNpp.cpp" />
     <ClCompile Include="..\NppScriptEngine\src\ScriptEnginePluginManager.cpp" />
     <ClCompile Include="..\NppScriptWinSupport\src\SampleDialogBox.cpp" />
     <ClCompile Include="..\NppScriptWinSupport\src\StackDump.cpp" />
@@ -74,7 +73,6 @@
     <ClCompile Include="..\ScriptManager\src\Script.cpp" />
     <ClCompile Include="..\ScriptManager\src\ScriptGroup.cpp" />
     <ClCompile Include="..\ScriptManager\src\ScriptRegistry.cpp" />
-    <ClCompile Include="..\ScriptManager\src\StringSupport.cpp" />
     <ClCompile Include="src\NppPluginScriptView.cpp" />
     <ClCompile Include="src\PluginDefinition.cpp" />
     <ClCompile Include="src\PluginInterface.cpp" />

@@ -61,6 +61,15 @@
     <Filter Include="NppWrapper\include">
       <UniqueIdentifier>{c598c885-f0ee-4c9d-a764-a726cc91b4b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{9bbcfd6b-0910-4515-829d-2f41d3930d7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\inlcude">
+      <UniqueIdentifier>{d707d396-d534-4526-add0-09258de0962c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\src">
+      <UniqueIdentifier>{1c5a55f4-885c-4967-be6a-40d95cb36720}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\PluginDefinition.h">
@@ -154,9 +163,6 @@
     <ClInclude Include="..\ScriptManager\include\ScriptRunner.h">
       <Filter>ScriptManager\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\ScriptManager\include\StringSupport.h">
-      <Filter>ScriptManager\include</Filter>
-    </ClInclude>
     <ClInclude Include="..\NppScriptEngine\include\ScriptEngine.h">
       <Filter>NppScriptEngine\include</Filter>
     </ClInclude>
@@ -167,9 +173,6 @@
       <Filter>NppScriptEngine\include</Filter>
     </ClInclude>
     <ClInclude Include="..\NppScriptEngine\include\ScriptEngineMacros.h">
-      <Filter>NppScriptEngine\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\NppScriptEngine\include\ScriptEngineNPP.h">
       <Filter>NppScriptEngine\include</Filter>
     </ClInclude>
     <ClInclude Include="..\NppScriptEngine\include\ScriptEnginePluginManager.h">
@@ -183,6 +186,9 @@
     </ClInclude>
     <ClInclude Include="..\NppWrapper\include\NppWrapper.h">
       <Filter>NppWrapper\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\StringSupport.h">
+      <Filter>Common\inlcude</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -220,13 +226,7 @@
     <ClCompile Include="..\ScriptManager\src\ScriptRegistry.cpp">
       <Filter>ScriptManager\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\ScriptManager\src\StringSupport.cpp">
-      <Filter>ScriptManager\src</Filter>
-    </ClCompile>
     <ClCompile Include="..\NppScriptEngine\src\ScriptEngine.cpp">
-      <Filter>NppScriptEngine\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\NppScriptEngine\src\ScriptEngineNpp.cpp">
       <Filter>NppScriptEngine\src</Filter>
     </ClCompile>
     <ClCompile Include="..\NppScriptEngine\src\ScriptEnginePluginManager.cpp">
@@ -234,6 +234,9 @@
     </ClCompile>
     <ClCompile Include="..\NppWrapper\src\NppWrapper.cpp">
       <Filter>NppWrapper\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\StringSupport.cpp">
+      <Filter>Common\src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

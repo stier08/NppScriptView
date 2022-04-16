@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "NppScriptEngine/include/ScriptEngine.h"
-#include "ScriptManager/include/StringSupport.h"
+#include "Common/include/StringSupport.h"
 
 
 #include  <fstream>
