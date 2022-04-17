@@ -15,7 +15,6 @@ namespace PYTHON_PLUGIN_MANAGER
 		bool pythonInitialized_;
 		std::string srcipt_exec_cmd_;
 		boost::shared_ptr<boost::thread> thread_;
-		HANDLE waitEvent_;
 
 		void finalizePythonImpl();
 		void finalizePython();

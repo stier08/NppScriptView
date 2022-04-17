@@ -9,6 +9,7 @@ extern "C" __declspec(dllexport) void setInfo(NppData notpadPlusData)
 {
 	nppData = notpadPlusData;
 	commandMenuInit();
+	reloadScripts();
 }
 
 extern "C" __declspec(dllexport) const TCHAR * getName()

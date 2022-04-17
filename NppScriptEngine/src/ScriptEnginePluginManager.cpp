@@ -14,7 +14,10 @@
 #include <sstream>
 #include <algorithm>
 #include <boost/bind/bind.hpp>
+#include <boost/filesystem.hpp>
 #include <boost/algorithm/string/replace.hpp>
+#include <boost/chrono.hpp>
+#include <boost/thread/thread.hpp> 
 #include <codecvt>
 
 #pragma warning( push )
@@ -45,9 +48,26 @@ namespace PYTHON_PLUGIN_MANAGER
 
 	void PythonPluginManager::threadRunner()
 	{
-		WaitForSingleObject(waitEvent_, INFINITE);
-		//MessageBox(NULL, _T("Finished!"), _T("I waited..."), 0);
-		std::wstring  callback_path = std::wstring(stringToWstring(getenv("PORTABLE_WS_TMP_HOME"))) + std::wstring(stringToWstring("\\npp_py_scripts"));
+		std::wstring  callback_path = std::wstring(stringToWstring(getenv("PORTABLE_WS_TMP_HOME"))) 
+			+ std::wstring(stringToWstring("\\npp\\npp_py_scripts"));
+		for (int i = 0; i < 100; i++)
+		{
+			if (boost::filesystem::exists(callback_path))
+			{
+				break;
+			}
+			else
+			{
+				boost::this_thread::sleep_for(boost::chrono::milliseconds(100));
+			}
+			
+		}
+
+		if (!boost::filesystem::exists(callback_path))
+		{
+			return;
+		}
+
 
 		std::wifstream ifs(callback_path);
 		ifs.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
@@ -81,49 +101,11 @@ namespace PYTHON_PLUGIN_MANAGER
 	{
 		try
 		{
-	
-			PythonScript_Exec pse;
-			pse.structVersion = 1;
-
-			waitEvent_ = CreateEvent(NULL, TRUE, FALSE, NULL);
-
-			pse.completedEvent = waitEvent_;
-			pse.deliverySuccess = FALSE;
-			std::wstring  script_path=  std::wstring(stringToWstring ( getenv("PORTABLE_WS_CORE_HOME") )) + std::wstring(stringToWstring ( "\\plugin\\pynpp\\pyscripts.py" ));
-
-			pse.script = script_path.c_str();
-			pse.flags = PYSCRF_SYNC;
-
-
-			TCHAR pluginName[] = _T("PythonScript.dll");
-			CommunicationInfo commInfo;
-			commInfo.internalMsg = PYSCR_EXECSCRIPT;
-			commInfo.srcModuleName = _T("NppPluginScriptView.dll");
-
-			commInfo.info = reinterpret_cast<void*>(&pse);
-
-			BOOL delivery = SendMessage(nppData._nppHandle, NPPM_MSGTOPLUGIN, reinterpret_cast<WPARAM>(pluginName), reinterpret_cast<LPARAM>(&commInfo));
-			if (!delivery)
+			if (thread_)
 			{
-				MessageBox(NULL, _T("Python Script not found"), _T("Msg2PluginTester"), 0);
-				return;
+				thread_->join();
 			}
-
-
-			if (pse.deliverySuccess)
-			{
-				// MessageBox(NULL, _T("Delivery Success"), _T("Msg2PluginTester"), 0);
-			}
-			else
-			{
-				MessageBox(NULL, _T("Delivery FAILED!"), _T("Msg2PluginTester"), 0);
-				return;
-			}
-			
-
 			thread_ = boost::shared_ptr<boost::thread>( new boost::thread(boost::bind(&PythonPluginManager::threadRunner, this)) );
-
-
 		}
 		catch (...)
 		{
