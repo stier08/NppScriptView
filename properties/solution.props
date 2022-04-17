@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="UserMacros">
-    <!-- <WTLVersion>WTL10_7294</WTLVersion>-->
     <ThirdPartyLibs>E:\LIBS</ThirdPartyLibs>
-	<ConfigurationPlatformToolset>v142</ConfigurationPlatformToolset>
-	<WTLVersion>WTL91_5321_Final</WTLVersion>
-    <BoostFileVer>1_78</BoostFileVer>
+	<ConfigurationPlatformToolset>v140</ConfigurationPlatformToolset>
+    <BoostFileVer>1_74</BoostFileVer>
     <VSVer>VS2019</VSVer>
-    <VSNum>142</VSNum>
-    <BoostVer>1_78_0</BoostVer>
-    <WTLFolder>$(ThirdPartyLibs)\wtl\$(WTLVersion)</WTLFolder>
-    <BoostFolder Condition="'$(Platform)'=='x64'">$(ThirdPartyLibs)\boost\boost-1_78_0_vs2019_toolset_v142_x64</BoostFolder> 
+    <VSNum>140</VSNum>
+    <BoostVer>1_74_0</BoostVer>
+    <BoostFolder Condition="'$(Platform)'=='x64'">$(ThirdPartyLibs)\boost\boost_1_74_0</BoostFolder> 
     <BoostFolder Condition="'$(Platform)'=='Win32'">$(ThirdPartyLibs)\boost\boost-1_78_0_vs2019_toolset_v142</BoostFolder> 
     <BoostInclude>$(BoostFolder)</BoostInclude> 
-    <BoostLib>$(BoostFolder)\lib64-msvc-14.2</BoostLib>
+    <BoostLib>$(BoostFolder)\lib64-msvc-14.0</BoostLib>
     
-    <OutputDirectoryHome>$(SolutionDir)bin\Output\$(Platform)\$(Configuration)\boost-$(BoostFileVer)_$(WTLVersion)_toolset_$(ConfigurationPlatformToolset)\</OutputDirectoryHome>
-    <IntermediateDirectoryHome>$(SolutionDir)bin\Intermediate\$(Platform)\$(Configuration)\boost-$(BoostFileVer)_$(WTLVersion)_toolset_$(ConfigurationPlatformToolset)\</IntermediateDirectoryHome>
+    <OutputDirectoryHome>$(SolutionDir)bin\Output\$(Platform)\$(Configuration)\boost-$(BoostFileVer)_toolset_$(ConfigurationPlatformToolset)\</OutputDirectoryHome>
+    <IntermediateDirectoryHome>$(SolutionDir)bin\Intermediate\$(Platform)\$(Configuration)\boost-$(BoostFileVer)_toolset_$(ConfigurationPlatformToolset)\</IntermediateDirectoryHome>
 
     <ProjectOutputDirectory>$(OutputDirectoryHome)\$(ProjectName)\</ProjectOutputDirectory>
     <ProjectIntermediateDirectory>$(IntermediateDirectoryHome)\$(ProjectName)\</ProjectIntermediateDirectory>
@@ -44,14 +41,13 @@
         /DPROP_VSNum=$(VSNum)
         /DPROP_BoostVer=$(BoostVer)
         /DPROP_ThirdPartyLibs=$(ThirdPartyLibs)
-        /DPROP_WTLFolder=$(WTLFolder)
         /DPROP_BoostFolder=$(BoostFolder)
         /DPROP_BoostInclude=$(BoostInclude)
         %(AdditionalOptions)
       </AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>$(WTLFolder)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutputDirectoryHome)ScriptManager;$(OutputDirectoryHome)NppDockingTemplate;$(OutputDirectoryHome)NppScriptWinSupport;$(BoostLib);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -66,6 +62,6 @@
     <PlatformToolset>$(ConfigurationPlatformToolset)</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Label="Globals">
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>    
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>    
   </PropertyGroup>
 </Project>
