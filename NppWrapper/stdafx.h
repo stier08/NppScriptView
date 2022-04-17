@@ -58,26 +58,6 @@
 #include <boost/regex.hpp>
 #include <boost/shared_ptr.hpp>
 
-#include "Python.h"
-
-/*   Warnings disabled because of boost::python
- *   4127: Loop/conditional expression is constant
- */
-#pragma warning( disable : 4127)
-#pragma warning( push )
-
-/*   Warnings disabled for boost::python
- *   4244: Conversion from long double to double
- *   4512: Assignment operator could not be generated
- *   4100: Unreferenced local parameter
- *   4459: declaration of 'self' hides global declaration
- *   4121: 'boost::python::detail::aligned_storage<28>': alignment of a member was sensitive to packing
- */
-#pragma warning( disable : 4244 4512 4100 4459 4121)
-#include <boost/python.hpp>
-#include <boost/python/raw_function.hpp>
-#pragma warning( pop )
-
 #include <NppPluginAPI/include/PluginInterface.h>
 #include <NppPluginAPI/include/Notepad_plus_msgs.h>
 
